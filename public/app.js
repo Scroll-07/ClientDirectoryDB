@@ -6,12 +6,12 @@ async function loadBusinesses() {
 }
 
 // Search businesses by keyword
-async function searchBusinesses() {
-    const searchInput = document.getElementById("searchInput").value;
-    const response    = await fetch(`/api/businesses/search?q=${searchInput}`);
-    const businesses  = await response.json();
-    displayBusinesses(businesses);
-}
+// async function searchBusinesses() {
+//     const searchInput = document.getElementById("searchInput").value;
+//     const response    = await fetch(`/api/businesses/search?q=${searchInput}`);
+//     const businesses  = await response.json();
+//     displayBusinesses(businesses);
+// }
 
 // Add a new business to the database
 async function addBusiness() {
@@ -70,4 +70,4 @@ function clearForm() {
 }
 
 // Auto-load businesses when the page opens
-loadBusinesses();
+// loadBusinesses();
