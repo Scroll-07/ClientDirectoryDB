@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Client Directory App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Client Directory App</h1>
+        <p>Search businesses, services, and client information.</p>
+    </header>
+
+    <main>
+        <section class="search-section">
+            <h2>Search Directory</h2>
+            <input type="text" id="searchInput"
+                   placeholder="Search by name, type, city, or service">
+            <button onclick="searchBusinesses()">Search</button>
+            <button onclick="loadBusinesses()">Show All</button>
+        </section>
+
+        <section class="form-section">
+            <h2>Add New Business</h2>
+            <input id="businessName"   placeholder="Business Name">
+            <input id="businessType"   placeholder="Business Type">
+            <input id="city"           placeholder="City">
+            <input id="state"          placeholder="State">
+            <input id="phone"          placeholder="Phone">
+            <input id="email"          placeholder="Email">
+            <input id="website"        placeholder="Website">
+            <textarea id="servicesOffered" placeholder="Services Offered"></textarea>
+            <button onclick="addBusiness()">Add Business</button>
+        </section>
+
+        <section>
+            <h2>Business Results</h2>
+            <div id="businessResults"></div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
