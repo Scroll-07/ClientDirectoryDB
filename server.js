@@ -16,7 +16,13 @@ app.use(express.static("public"));
 const dbConfig = {
     server: process.env.DB_SERVER,
     database: process.env.DB_DATABASE,
-    options: { trustedConnection: true, trustServerCertificate: true }
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    port: 1433,
+    options: { 
+        encrypt: false,
+        trustServerCertificate: true 
+    }
 };
 
 // ── Connect to SQL Server ────────────────────────────────────────
