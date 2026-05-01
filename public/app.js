@@ -30,10 +30,13 @@ async function addBusiness() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newBusiness)
     });
+    // const result = await response.json();
+    // alert(result.message);
+    // clearForm();
+    // loadBusinesses();
     const result = await response.json();
-    alert(result.message);
-    clearForm();
-    loadBusinesses();
+alert(result.message);
+clearForm();
 }
 
 // Display businesses as cards on the page
