@@ -52,6 +52,28 @@ app.get("/api/businesses", async (req, res) => {
 });
 
 // ── SEARCH businesses ────────────────────────────────────────────
+// app.get("/api/businesses/search", async (req, res) => {
+//     const searchTerm = req.query.q || "";
+//     try {
+//         const pool   = await connectToDatabase();
+//         const result = await pool.request()
+//             .input("SearchTerm", sql.NVarChar, `%${searchTerm}%`)
+//             .query(`
+//                 SELECT BusinessID, BusinessName, BusinessType,
+//                        City, State, Phone, Email, Website, ServicesOffered
+//                 FROM Businesses
+//                 WHERE BusinessName    LIKE @SearchTerm
+//                    OR BusinessType    LIKE @SearchTerm
+//                    OR City            LIKE @SearchTerm
+//                    OR ServicesOffered LIKE @SearchTerm
+//                 ORDER BY BusinessName ASC
+//             `);
+//         res.json(result.recordset);
+//     } catch (error) {
+//         res.status(500).json({ message: "Error searching", error: error.message });
+//     }
+// });
+// ── SEARCH businesses ────────────────────────────────────────────
 app.get("/api/businesses/search", async (req, res) => {
     const searchTerm = req.query.q || "";
     try {
@@ -73,7 +95,6 @@ app.get("/api/businesses/search", async (req, res) => {
         res.status(500).json({ message: "Error searching", error: error.message });
     }
 });
-
 // ── ADD new business ─────────────────────────────────────────────
 app.post("/api/businesses", async (req, res) => {
     const { BusinessName, BusinessType, City, State,
