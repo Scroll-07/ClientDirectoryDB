@@ -4,13 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Client Directory</title>
-    <link rel="icon" type="image/png" href="IMG_0574.png">
+
+    <!-- ── Standard browser tab icon ── -->
+    <link rel="icon" type="image/png" href="IMG_0572.png">
+
+    <!-- ── iOS home screen icon (what appears when saved to iPhone home screen) ── -->
+    <link rel="apple-touch-icon" href="IMG_0572.png">
+
+    <!-- ── Android / Chrome home screen icon ── -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- ── iOS: removes the Safari browser chrome when opened from home screen ── -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Client Directory">
+
+    <!-- ── Theme color (colors the browser bar on Android) ── -->
+    <meta name="theme-color" content="#1a3a4a">
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header>
-        <img src="IMG_0572.png" alt="Client Directory Logo" class="header-logo">
+        <img src="IMG_0572.png" alt="Client Directory Logo" class="header-logo"
+             onerror="this.style.display='none'">
         <h1>Client Directory</h1>
         <p>Business Management Portal</p>
     </header>
