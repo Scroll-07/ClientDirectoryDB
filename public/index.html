@@ -1,44 +1,160 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Client Directory App</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Directory</title>
+    <link rel="icon" type="image/png" href="IMG_0574.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header>
-        <h1>Client Directory App</h1>
-        <p>Manage businesses, services, and client information.</p>
+        <div class="header-inner">
+            <div class="brand">
+                <img src="IMG_0572.png" alt="Client Directory Logo" class="header-logo">
+                <div class="brand-text">
+                    <span class="brand-name">Client Directory</span>
+                    <span class="brand-tagline">Business Management Portal</span>
+                </div>
+            </div>
+            <nav class="header-nav">
+                <span class="nav-item active" onclick="showPage('home')">Dashboard</span>
+                <span class="nav-item" onclick="showPage('add')">Add Business</span>
+                <span class="nav-item" onclick="showPage('search')">Search</span>
+            </nav>
+        </div>
     </header>
 
     <main>
-        <!-- Section to Search for a business ; will use this for an internal page -->
-        <!-- <section class="search-section">
-            <h2>Search Directory</h2>
-            <input type="text" id="searchInput"
-                   placeholder="Search by name, type, city, or service">
-            <button onclick="searchBusinesses()">Search</button>
-            <button onclick="loadBusinesses()">Show All</button>
-        </section> -->
 
-        <section class="form-section">
-            <h2>Add New Business</h2>
-            <input id="businessName"   placeholder="Business Name">
-            <input id="businessType"   placeholder="Business Type">
-            <input id="city"           placeholder="City">
-            <input id="state"          placeholder="State">
-            <input id="phone"          placeholder="Phone">
-            <input id="email"          placeholder="Email">
-            <input id="website"        placeholder="Website">
-            <textarea id="servicesOffered" placeholder="Services Offered"></textarea>
-            <button onclick="addBusiness()">Add Business</button>
-        </section>
-<!-- 
-        <section>
-            <h2>Business Results</h2>
-            <div id="businessResults"></div>
-        </section> -->
+        <!-- DASHBOARD PAGE -->
+        <div id="page-home" class="page active">
+            <div class="page-hero">
+                <div class="hero-text">
+                    <h1>Welcome back.</h1>
+                    <p>Manage and explore your business network from one central place.</p>
+                </div>
+                <div class="stats-row">
+                    <div class="stat-card">
+                        <span class="stat-number" id="totalCount">—</span>
+                        <span class="stat-label">Total Businesses</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="cityCount">—</span>
+                        <span class="stat-label">Cities</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="typeCount">—</span>
+                        <span class="stat-label">Industries</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-header">
+                <h2>All Businesses</h2>
+                <button class="btn-ghost" onclick="loadBusinesses()">↻ Refresh</button>
+            </div>
+            <div id="businessResults" class="card-grid">
+                <div class="empty-state">
+                    <div class="empty-icon">⊙</div>
+                    <p>Loading your directory...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ADD BUSINESS PAGE -->
+        <div id="page-add" class="page">
+            <div class="page-hero slim">
+                <div class="hero-text">
+                    <h1>Add a Business</h1>
+                    <p>Fill in the details below to add a new entry to your directory.</p>
+                </div>
+            </div>
+
+            <div class="form-card">
+                <div class="form-grid">
+                    <div class="field-group">
+                        <label for="businessName">Business Name <span class="required">*</span></label>
+                        <input id="businessName" type="text" placeholder="e.g. Bright Path Accounting">
+                    </div>
+                    <div class="field-group">
+                        <label for="businessType">Industry / Type <span class="required">*</span></label>
+                        <input id="businessType" type="text" placeholder="e.g. Accounting Firm">
+                    </div>
+                    <div class="field-group">
+                        <label for="city">City <span class="required">*</span></label>
+                        <input id="city" type="text" placeholder="e.g. Atlanta">
+                    </div>
+                    <div class="field-group">
+                        <label for="state">State <span class="required">*</span></label>
+                        <input id="state" type="text" placeholder="e.g. GA">
+                    </div>
+                    <div class="field-group">
+                        <label for="phone">Phone Number</label>
+                        <input id="phone" type="tel" placeholder="e.g. 404-555-1001">
+                    </div>
+                    <div class="field-group">
+                        <label for="email">Email Address</label>
+                        <input id="email" type="email" placeholder="e.g. info@business.com">
+                    </div>
+                    <div class="field-group full">
+                        <label for="website">Website</label>
+                        <input id="website" type="url" placeholder="e.g. https://business.com">
+                    </div>
+                    <div class="field-group full">
+                        <label for="servicesOffered">Services Offered</label>
+                        <textarea id="servicesOffered" rows="3" placeholder="e.g. Bookkeeping, tax preparation, payroll reports"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button class="btn-primary" onclick="addBusiness()">
+                        + Add to Directory
+                    </button>
+                    <button class="btn-ghost" onclick="clearForm()">Clear Form</button>
+                </div>
+
+                <div id="formMessage" class="form-message hidden"></div>
+            </div>
+        </div>
+
+        <!-- SEARCH PAGE -->
+        <div id="page-search" class="page">
+            <div class="page-hero slim">
+                <div class="hero-text">
+                    <h1>Search Directory</h1>
+                    <p>Find businesses by name, type, city, or service.</p>
+                </div>
+            </div>
+
+            <div class="search-bar-wrap">
+                <div class="search-bar">
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search by name, type, city, or service..."
+                        onkeydown="if(event.key==='Enter') searchBusinesses()"
+                    >
+                    <button class="btn-primary compact" onclick="searchBusinesses()">Search</button>
+                    <button class="btn-ghost compact" onclick="clearSearch()">Clear</button>
+                </div>
+            </div>
+
+            <div id="searchResults" class="card-grid">
+                <div class="empty-state">
+                    <p>Enter a keyword above to search your directory.</p>
+                </div>
+            </div>
+        </div>
+
     </main>
+
+    <footer>
+        <p>Client Directory &copy; 2025 &nbsp;&middot;&nbsp; All records are private and secure.</p>
+    </footer>
 
     <script src="app.js"></script>
 </body>
